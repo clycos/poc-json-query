@@ -1,0 +1,47 @@
+[
+  {
+    "pidm": 100002,
+    "term_code": "202410",
+    "crn": "41095",
+    "dept_code": "4053",
+    "dept_desc": "Nursing Program",
+    "divs_code": "4050",
+    "divs_desc": "Health and Human Services"
+  },
+  {
+    "pidm": 100002,
+    "term_code": "202410",
+    "crn": "40743",
+    "dept_code": "4053",
+    "dept_desc": "Nursing Program",
+    "divs_code": "4050",
+    "divs_desc": "Health and Human Services"
+  },
+  {
+    "pidm": 100002,
+    "term_code": "202410",
+    "crn": "40658",
+    "dept_code": "4055",
+    "dept_desc": "Community Hlth Serv Educ Progs",
+    "divs_code": "4050",
+    "divs_desc": "Health and Human Services"
+  },
+  {
+    "pidm": 100002,
+    "term_code": "202410",
+    "crn": "41307",
+    "dept_code": "4053",
+    "dept_desc": "Nursing Program",
+    "divs_code": "4050",
+    "divs_desc": "Health and Human Services"
+  },
+  {
+    "pidm": 100002,
+    "term_code": "202410",
+    "crn": "40961",
+    "dept_code": "4053",
+    "dept_desc": "Nursing Program",
+    "divs_code": "4050",
+    "divs_desc": "Health and Human Services"
+  }
+]
