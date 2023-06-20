@@ -1,1 +1,42 @@
-<h1>JSON Dropdown Test</h1>
+<form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title>Shipping Information</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col-4">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="Division" formControlName="divs">
+              <mat-option *ngFor="let divs of divs" [value]="divs.abbreviation">
+                {{ divs.name }}
+              </mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="addressForm.controls['divs'].hasError('required')"
+            >
+              Division is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-4">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="Department" formControlName="dept">
+              <mat-option *ngFor="let dept of divs" [value]="dept.abbreviation">
+                {{ dept.name }}
+              </mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="addressForm.controls['dept'].hasError('required')"
+            >
+              Department is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">Submit</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
