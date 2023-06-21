@@ -11,7 +11,7 @@
               <mat-option
                 *ngFor="let divs of divsList"
                 [value]="divs.divs_code"
-                (click)="onSelect(divs.divs_code)"
+                (click)="getDeptDropDown(divs.divs_code)"
               >
                 {{ divs.divs_code }}-{{ divs.divs_desc }}
               </mat-option>

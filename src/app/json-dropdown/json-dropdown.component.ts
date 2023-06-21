@@ -17,9 +17,9 @@ interface DivsDept {
   divs_desc: string;
 }
 
-interface Divs {
-  divs_code: string;
-  divs_desc: string;
+interface Depts {
+  dept_code: string;
+  dept_desc: string;
 }
 
 @Component({
@@ -33,7 +33,7 @@ export class JsonDropdownComponent implements OnInit {
   deptList: any[] = [];
 
   ngOnInit(): void {
-    this.divsList = this.divDD(this.empInfo, 'divs');
+    this.divsList = this.getDivsDropDown(this.empInfo);
   }
 
   private fb = inject(FormBuilder);
@@ -60,7 +60,7 @@ export class JsonDropdownComponent implements OnInit {
   }
 
   // --left off here
-  divDD(jsonArray: any[], listType: string): any {
+  getDivsDropDown(jsonArray: any[]): any {
     const uniqueDivs = [
       ...new Set(
         jsonArray.map((item) =>
@@ -72,41 +72,28 @@ export class JsonDropdownComponent implements OnInit {
       ),
     ].map((item) => JSON.parse(item));
 
-    let clean = [];
-
-    if ((listType = 'divs')) {
-      clean = jsonArray.filter(
-        (jsonArray, index, self) =>
-          index === self.findIndex((t) => t.divs_code === jsonArray.divs_code)
-      );
-    } else
-      clean = jsonArray.filter(
-        (jsonArray, index, self) =>
-          index ===
-          self.findIndex(
-            (t) =>
-              t.dept_code === jsonArray.dept_code &&
-              t.divs_code === jsonArray.divs_code
-          )
-      );
-
-    return clean;
+    return uniqueDivs;
   }
 
-  deptDD(divsCode: string): any {
-    let clean = [];
+  getDeptDropDown(divsCode: string) {
+    const uniqueJson: { [key: string]: Depts } = {};
 
-    clean = this.divsList.filter((e) => {
-      return e.name === divsCode;
-    });
+    for (let i = 0; i < this.empInfo.length; i++) {
+      const item = this.empInfo[i];
+      const currentDivsCode = item.divs_code;
 
-    return clean;
-  }
+      if (currentDivsCode === divsCode) {
+        const uniqueKey = item.dept_code + '_' + item.dept_desc;
 
-  onSelect(event: any): any {
-    this.deptList = this.divsList.filter((e) => {
-      return e.divs_code === event;
-    });
-    console.log('blah', this.deptList);
+        if (!uniqueJson[uniqueKey]) {
+          uniqueJson[uniqueKey] = {
+            dept_code: item.dept_code,
+            dept_desc: item.dept_desc,
+          };
+        }
+      }
+    }
+
+    this.deptList = Object.values(uniqueJson);
   }
 }
