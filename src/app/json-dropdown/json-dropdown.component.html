@@ -8,8 +8,12 @@
         <div class="col-4">
           <mat-form-field class="full-width">
             <mat-select placeholder="Division" formControlName="divs">
-              <mat-option *ngFor="let divs of divs" [value]="divs.abbreviation">
-                {{ divs.name }}
+              <mat-option
+                *ngFor="let divs of divsList"
+                [value]="divs.divs_code"
+                (click)="onSelect(divs.divs_code)"
+              >
+                {{ divs.divs_code }}-{{ divs.divs_desc }}
               </mat-option>
             </mat-select>
             <mat-error
@@ -22,8 +26,11 @@
         <div class="col-4">
           <mat-form-field class="full-width">
             <mat-select placeholder="Department" formControlName="dept">
-              <mat-option *ngFor="let dept of divs" [value]="dept.abbreviation">
-                {{ dept.name }}
+              <mat-option
+                *ngFor="let dept of deptList"
+                [value]="dept.dept_code"
+              >
+                {{ dept.dept_code }}-{{ dept.dept_desc }}
               </mat-option>
             </mat-select>
             <mat-error
