@@ -4,6 +4,8 @@
       <mat-card-title>Shipping Information</mat-card-title>
     </mat-card-header>
     <mat-card-content>
+      <!-- 1st row -->
+      <!-- 1st row 1st column -->
       <div class="row">
         <div class="col-4">
           <mat-form-field class="full-width">
@@ -23,6 +25,7 @@
             </mat-error>
           </mat-form-field>
         </div>
+        <!-- 1st row 2nd column -->
         <div class="col-4">
           <mat-form-field class="full-width">
             <mat-select placeholder="Department" formControlName="dept">
@@ -41,13 +44,30 @@
           </mat-form-field>
         </div>
       </div>
+      <!-- 2nd row -->
+      <!-- 2nd row 1st column -->
+      <div class="row">
+        <div class="col-4">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="CRN" formControlName="crn">
+              <mat-option
+                *ngFor="let divs of divsList"
+                [value]="divs.divs_code"
+                (click)="getDeptDropDown(divs.divs_code)"
+              >
+                {{ divs.divs_code }}-{{ divs.divs_desc }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="addressForm.controls['crn'].hasError('required')">
+              CRN is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <!-- 2nd row 2nd column -->
+      </div>
     </mat-card-content>
     <mat-card-actions>
       <button mat-raised-button color="primary" type="submit">Submit</button>
     </mat-card-actions>
   </mat-card>
 </form>
-
-<div *ngFor="let item of empInfo">
-  <p>{{ item.pidm }}</p>
-</div>

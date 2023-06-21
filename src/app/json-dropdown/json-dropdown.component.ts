@@ -3,20 +3,6 @@ import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import emp from '../../assets/empData.json';
 
-interface Record {
-  [key: string]: any;
-}
-
-interface DivsDept {
-  pidm: number;
-  term_code: string;
-  crn: string;
-  dept_code: string;
-  dept_desc: string;
-  divs_code: string;
-  divs_desc: string;
-}
-
 interface Depts {
   dept_code: string;
   dept_desc: string;
@@ -40,6 +26,7 @@ export class JsonDropdownComponent implements OnInit {
   addressForm = this.fb.group({
     dept: [null, Validators.required],
     divs: [null, Validators.required],
+    crn: [null, Validators.required],
   });
 
   hasUnitNumber = false;
