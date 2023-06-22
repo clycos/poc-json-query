@@ -38,6 +38,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "baseHref": "poc-json-query",
             "outputPath": "dist/pson-json",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -89,7 +90,8 @@
               "browserTarget": "pson-json:build:production"
             },
             "development": {
-              "browserTarget": "pson-json:build:development"
+              "browserTarget": "pson-json:build:development",
+              "port": 4201
             }
           },
           "defaultConfiguration": "development"

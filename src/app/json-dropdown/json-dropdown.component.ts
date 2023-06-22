@@ -8,6 +8,10 @@ interface Depts {
   dept_desc: string;
 }
 
+interface CRN {
+  crn: string;
+}
+
 @Component({
   selector: 'app-json-dropdown',
   templateUrl: './json-dropdown.component.html',
@@ -17,6 +21,7 @@ export class JsonDropdownComponent implements OnInit {
   empInfo: any[] = emp;
   divsList: any[] = [];
   deptList: any[] = [];
+  crnList: any[] = [];
 
   ngOnInit(): void {
     this.divsList = this.getDivsDropDown(this.empInfo);
@@ -42,10 +47,6 @@ export class JsonDropdownComponent implements OnInit {
     { name: 'Montana', abbreviation: 'MT' },
   ];
 
-  onSubmit(): void {
-    alert('Thanks!');
-  }
-
   // --left off here
   getDivsDropDown(jsonArray: any[]): any {
     const uniqueDivs = [
@@ -58,11 +59,11 @@ export class JsonDropdownComponent implements OnInit {
         )
       ),
     ].map((item) => JSON.parse(item));
-
     return uniqueDivs;
   }
 
   getDeptDropDown(divsCode: string) {
+    this.addressForm.get('crn')?.reset();
     const uniqueJson: { [key: string]: Depts } = {};
 
     for (let i = 0; i < this.empInfo.length; i++) {
@@ -80,7 +81,37 @@ export class JsonDropdownComponent implements OnInit {
         }
       }
     }
-
     this.deptList = Object.values(uniqueJson);
+    if (this.deptList.length === 1) {
+      this.addressForm.get('dept')?.setValue(this.deptList[0].dept_code);
+      this.getCRNDropDown(this.deptList[0].dept_code);
+    }
+  }
+
+  getCRNDropDown(deptCode: string) {
+    const uniqueSet = new Set<string>();
+    const uniqueJson: CRN[] = [];
+
+    for (const data of this.empInfo) {
+      if (data.dept_code === deptCode) {
+        if (!uniqueSet.has(data.crn)) {
+          uniqueSet.add(data.crn);
+          uniqueJson.push({ crn: data.crn });
+        }
+      }
+    }
+
+    this.crnList = Object.values(uniqueJson);
+
+    // set default value if only 1 option available
+    if (uniqueJson.length === 1) {
+      this.addressForm.get('crn')?.setValue(this.crnList[0].crn);
+    }
+  }
+
+  onSubmit(event: any): void {
+    console.log(this.addressForm.value);
+
+    alert('Thanks!');
   }
 }

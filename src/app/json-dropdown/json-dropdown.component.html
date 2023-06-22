@@ -1,4 +1,4 @@
-<form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit()">
+<form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit($event)">
   <mat-card class="shipping-card">
     <mat-card-header>
       <mat-card-title>Shipping Information</mat-card-title>
@@ -32,6 +32,7 @@
               <mat-option
                 *ngFor="let dept of deptList"
                 [value]="dept.dept_code"
+                (click)="getCRNDropDown(dept.dept_code)"
               >
                 {{ dept.dept_code }}-{{ dept.dept_desc }}
               </mat-option>
@@ -50,12 +51,8 @@
         <div class="col-4">
           <mat-form-field class="full-width">
             <mat-select placeholder="CRN" formControlName="crn">
-              <mat-option
-                *ngFor="let divs of divsList"
-                [value]="divs.divs_code"
-                (click)="getDeptDropDown(divs.divs_code)"
-              >
-                {{ divs.divs_code }}-{{ divs.divs_desc }}
+              <mat-option *ngFor="let crn of crnList" [value]="crn.crn">
+                {{ crn.crn }}
               </mat-option>
             </mat-select>
             <mat-error *ngIf="addressForm.controls['crn'].hasError('required')">

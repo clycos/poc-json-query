@@ -1,47 +1,38 @@
 [
   {
-    "pidm": 100002,
-    "term_code": "202410",
-    "crn": "41095",
-    "dept_code": "4053",
-    "dept_desc": "Nursing Program",
+    "pidm": 200001,
+    "term_code": "202320",
+    "crn": "21883",
+    "dept_code": "3022",
+    "dept_desc": "Community and Continuing Educ",
+    "divs_code": "3001",
+    "divs_desc": "Community Ed & Workforce Dev"
+  },
+  {
+    "pidm": 200001,
+    "term_code": "202320",
+    "crn": "20543",
+    "dept_code": "4052",
+    "dept_desc": "Emergency Medical Serv Progs",
     "divs_code": "4050",
     "divs_desc": "Health and Human Services"
   },
   {
-    "pidm": 100002,
-    "term_code": "202410",
-    "crn": "40743",
-    "dept_code": "4053",
-    "dept_desc": "Nursing Program",
-    "divs_code": "4050",
-    "divs_desc": "Health and Human Services"
+    "pidm": 200001,
+    "term_code": "202320",
+    "crn": "21887",
+    "dept_code": "3022",
+    "dept_desc": "Community and Continuing Educ",
+    "divs_code": "3001",
+    "divs_desc": "Community Ed & Workforce Dev"
   },
   {
-    "pidm": 100002,
-    "term_code": "202410",
-    "crn": "40658",
-    "dept_code": "4055",
-    "dept_desc": "Community Hlth Serv Educ Progs",
-    "divs_code": "4050",
-    "divs_desc": "Health and Human Services"
-  },
-  {
-    "pidm": 100002,
-    "term_code": "202410",
-    "crn": "41307",
-    "dept_code": "4053",
-    "dept_desc": "Nursing Program",
-    "divs_code": "4050",
-    "divs_desc": "Health and Human Services"
-  },
-  {
-    "pidm": 100002,
-    "term_code": "202410",
-    "crn": "40961",
-    "dept_code": "4053",
-    "dept_desc": "Nursing Program",
-    "divs_code": "4050",
-    "divs_desc": "Health and Human Services"
+    "pidm": 200001,
+    "term_code": "202320",
+    "crn": "11111",
+    "dept_code": "0001",
+    "dept_desc": "Chad Dept",
+    "divs_code": "1305",
+    "divs_desc": "Chad Div"
   }
 ]
