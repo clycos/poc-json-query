@@ -1,38 +1,86 @@
 [
   {
-    "pidm": 200001,
+    "pidm": 1000001,
     "term_code": "202320",
     "crn": "21883",
     "dept_code": "3022",
     "dept_desc": "Community and Continuing Educ",
     "divs_code": "3001",
-    "divs_desc": "Community Ed & Workforce Dev"
+    "divs_desc": "Community Ed & Workforce Dev",
+    "subj_code": "NCHE",
+    "crse_numb": "102",
+    "crse_title": "AHA BLS Provider CPR"
   },
   {
-    "pidm": 200001,
-    "term_code": "202320",
-    "crn": "20543",
-    "dept_code": "4052",
-    "dept_desc": "Emergency Medical Serv Progs",
-    "divs_code": "4050",
-    "divs_desc": "Health and Human Services"
-  },
-  {
-    "pidm": 200001,
+    "pidm": 1000001,
     "term_code": "202320",
     "crn": "21887",
     "dept_code": "3022",
     "dept_desc": "Community and Continuing Educ",
     "divs_code": "3001",
-    "divs_desc": "Community Ed & Workforce Dev"
+    "divs_desc": "Community Ed & Workforce Dev",
+    "subj_code": "NCHE",
+    "crse_numb": "102",
+    "crse_title": "AHA BLS Provider CPR"
   },
   {
-    "pidm": 200001,
+    "pidm": 1000001,
     "term_code": "202320",
-    "crn": "11111",
-    "dept_code": "0001",
-    "dept_desc": "Chad Dept",
-    "divs_code": "1305",
-    "divs_desc": "Chad Div"
+    "crn": "21516",
+    "dept_code": "4076",
+    "dept_desc": "Comm Media and the Arts Dept",
+    "divs_code": "4070",
+    "divs_desc": "Arts and Sciences",
+    "subj_code": "MUSC",
+    "crse_numb": "158",
+    "crse_title": "Applied Lesson II"
+  },
+  {
+    "pidm": 1000001,
+    "term_code": "202320",
+    "crn": "21342",
+    "dept_code": "4076",
+    "dept_desc": "Comm Media and the Arts Dept",
+    "divs_code": "4070",
+    "divs_desc": "Arts and Sciences",
+    "subj_code": "MUSC",
+    "crse_numb": "106",
+    "crse_title": "Private Music Lesson"
+  },
+  {
+    "pidm": 1000001,
+    "term_code": "202320",
+    "crn": "21157",
+    "dept_code": "3022",
+    "dept_desc": "Community and Continuing Educ",
+    "divs_code": "3001",
+    "divs_desc": "Community Ed & Workforce Dev",
+    "subj_code": "NCCE",
+    "crse_numb": "200",
+    "crse_title": "Rock Band"
+  },
+  {
+    "pidm": 1000001,
+    "term_code": "202320",
+    "crn": "20543",
+    "dept_code": "4052",
+    "dept_desc": "Emergency Medical Serv Progs",
+    "divs_code": "4050",
+    "divs_desc": "Health and Human Services",
+    "subj_code": "EMTA",
+    "crse_numb": "102",
+    "crse_title": "Basic EMT II"
+  },
+  {
+    "pidm": 1000001,
+    "term_code": "202320",
+    "crn": "20298",
+    "dept_code": "4076",
+    "dept_desc": "Comm Media and the Arts Dept",
+    "divs_code": "4070",
+    "divs_desc": "Arts and Sciences",
+    "subj_code": "MUSC",
+    "crse_numb": "122",
+    "crse_title": "Rock Band"
   }
 ]

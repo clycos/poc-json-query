@@ -25,7 +25,10 @@
             </mat-error>
           </mat-form-field>
         </div>
-        <!-- 1st row 2nd column -->
+      </div>
+      <!-- 2nd row -->
+      <!-- 2nd row 1st column -->
+      <div class="row">
         <div class="col-4">
           <mat-form-field class="full-width">
             <mat-select placeholder="Department" formControlName="dept">
@@ -44,15 +47,16 @@
             </mat-error>
           </mat-form-field>
         </div>
+        <!-- 2nd row 2nd column -->
       </div>
-      <!-- 2nd row -->
-      <!-- 2nd row 1st column -->
+      <!-- 3rd row -->
+      <!-- 3rd row 1st column -->
       <div class="row">
         <div class="col-4">
           <mat-form-field class="full-width">
             <mat-select placeholder="CRN" formControlName="crn">
               <mat-option *ngFor="let crn of crnList" [value]="crn.crn">
-                {{ crn.crn }}
+                {{ crn.crn }}: {{ crn.subj_code }} {{ crn.crse_numb }}
               </mat-option>
             </mat-select>
             <mat-error *ngIf="addressForm.controls['crn'].hasError('required')">
@@ -60,7 +64,7 @@
             </mat-error>
           </mat-form-field>
         </div>
-        <!-- 2nd row 2nd column -->
+        <!-- 3rd row 2nd column -->
       </div>
     </mat-card-content>
     <mat-card-actions>

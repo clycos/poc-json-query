@@ -2,53 +2,31 @@ import { Component, inject, OnInit } from '@angular/core';
 
 import { FormBuilder, Validators } from '@angular/forms';
 import emp from '../../assets/empData.json';
-
-interface Depts {
-  dept_code: string;
-  dept_desc: string;
-}
-
-interface CRN {
-  crn: string;
-}
-
+import { Course, Dept, CRN, Divs } from '../../assets/interfaces';
 @Component({
   selector: 'app-json-dropdown',
   templateUrl: './json-dropdown.component.html',
   styleUrls: ['./json-dropdown.component.css'],
 })
 export class JsonDropdownComponent implements OnInit {
-  empInfo: any[] = emp;
-  divsList: any[] = [];
-  deptList: any[] = [];
-  crnList: any[] = [];
+  empInfo: Course[] = emp;
+  divsList: Divs[] = [];
+  deptList: Dept[] = [];
+  crnList: CRN[] = [];
 
   ngOnInit(): void {
-    this.divsList = this.getDivsDropDown(this.empInfo);
+    this.getDivsDropDown(this.empInfo);
   }
 
   private fb = inject(FormBuilder);
   addressForm = this.fb.group({
-    dept: [null, Validators.required],
-    divs: [null, Validators.required],
-    crn: [null, Validators.required],
+    divs: '',
+    dept: ['', Validators.required],
+    crn: '',
   });
 
-  hasUnitNumber = false;
-
-  divs = [
-    { name: 'Maine', abbreviation: 'ME' },
-    { name: 'Maryland', abbreviation: 'MD' },
-    { name: 'Massachusetts', abbreviation: 'MA' },
-    { name: 'Michigan', abbreviation: 'MI' },
-    { name: 'Minnesota', abbreviation: 'MN' },
-    { name: 'Mississippi', abbreviation: 'MS' },
-    { name: 'Missouri', abbreviation: 'MO' },
-    { name: 'Montana', abbreviation: 'MT' },
-  ];
-
   // --left off here
-  getDivsDropDown(jsonArray: any[]): any {
+  getDivsDropDown(jsonArray: any[]) {
     const uniqueDivs = [
       ...new Set(
         jsonArray.map((item) =>
@@ -59,12 +37,17 @@ export class JsonDropdownComponent implements OnInit {
         )
       ),
     ].map((item) => JSON.parse(item));
-    return uniqueDivs;
+
+    this.divsList = uniqueDivs;
+    if (this.divsList.length === 1) {
+      this.addressForm.get('divs')?.setValue(this.divsList[0].divs_code);
+      this.getDeptDropDown(this.divsList[0].divs_code);
+    }
   }
 
   getDeptDropDown(divsCode: string) {
     this.addressForm.get('crn')?.reset();
-    const uniqueJson: { [key: string]: Depts } = {};
+    const uniqueJson: { [key: string]: Dept } = {};
 
     for (let i = 0; i < this.empInfo.length; i++) {
       const item = this.empInfo[i];
@@ -82,12 +65,13 @@ export class JsonDropdownComponent implements OnInit {
       }
     }
     this.deptList = Object.values(uniqueJson);
+
+    //set default value if only 1 option available
     if (this.deptList.length === 1) {
       this.addressForm.get('dept')?.setValue(this.deptList[0].dept_code);
       this.getCRNDropDown(this.deptList[0].dept_code);
     }
   }
-
   getCRNDropDown(deptCode: string) {
     const uniqueSet = new Set<string>();
     const uniqueJson: CRN[] = [];
@@ -96,7 +80,12 @@ export class JsonDropdownComponent implements OnInit {
       if (data.dept_code === deptCode) {
         if (!uniqueSet.has(data.crn)) {
           uniqueSet.add(data.crn);
-          uniqueJson.push({ crn: data.crn });
+          uniqueJson.push({
+            crn: data.crn,
+            subj_code: data.subj_code,
+            crse_numb: data.crse_numb,
+            crse_title: data.crse_title,
+          });
         }
       }
     }
@@ -104,14 +93,12 @@ export class JsonDropdownComponent implements OnInit {
     this.crnList = Object.values(uniqueJson);
 
     // set default value if only 1 option available
-    if (uniqueJson.length === 1) {
+    if (this.crnList.length === 1) {
       this.addressForm.get('crn')?.setValue(this.crnList[0].crn);
     }
   }
 
   onSubmit(event: any): void {
     console.log(this.addressForm.value);
-
-    alert('Thanks!');
   }
 }
