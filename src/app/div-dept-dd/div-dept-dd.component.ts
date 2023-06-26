@@ -4,11 +4,11 @@ import { FormBuilder, Validators } from '@angular/forms';
 import emp from '../../assets/empData.json';
 import { Course, Dept, CRN, Divs } from '../../assets/interfaces';
 @Component({
-  selector: 'app-json-dropdown',
-  templateUrl: './json-dropdown.component.html',
-  styleUrls: ['./json-dropdown.component.css'],
+  selector: 'app-div-dept-dd',
+  templateUrl: './div-dept-dd.component.html',
+  styleUrls: ['./div-dept-dd.component.css'],
 })
-export class JsonDropdownComponent implements OnInit {
+export class DivDeptDDComponent implements OnInit {
   empInfo: Course[] = emp;
   divsList: Divs[] = [];
   deptList: Dept[] = [];
