@@ -1,1 +1,74 @@
-<p>subj-crse-dd works!</p>
+<form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit($event)">
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title>Shipping Information</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <!-- 1st row -->
+      <!-- 1st row 1st column -->
+      <div class="row">
+        <div class="col-4">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="Division" formControlName="divs">
+              <mat-option
+                *ngFor="let divs of divsList"
+                [value]="divs.divs_code"
+                (click)="getDeptDropDown(divs.divs_code)"
+              >
+                {{ divs.divs_code }}-{{ divs.divs_desc }}
+              </mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="addressForm.controls['divs'].hasError('required')"
+            >
+              Division is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <!-- 2nd row -->
+      <!-- 2nd row 1st column -->
+      <div class="row">
+        <div class="col-4">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="Department" formControlName="dept">
+              <mat-option
+                *ngFor="let dept of deptList"
+                [value]="dept.dept_code"
+                (click)="getCRNDropDown(dept.dept_code)"
+              >
+                {{ dept.dept_code }}-{{ dept.dept_desc }}
+              </mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="addressForm.controls['dept'].hasError('required')"
+            >
+              Department is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <!-- 2nd row 2nd column -->
+      </div>
+      <!-- 3rd row -->
+      <!-- 3rd row 1st column -->
+      <div class="row">
+        <div class="col-4">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="CRN" formControlName="crn">
+              <mat-option *ngFor="let crn of crnList" [value]="crn.crn">
+                {{ crn.crn }}: {{ crn.subj_code }} {{ crn.crse_numb }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="addressForm.controls['crn'].hasError('required')">
+              CRN is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <!-- 3rd row 2nd column -->
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">Submit</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
