@@ -2,58 +2,61 @@ import { Component, inject, OnInit } from '@angular/core';
 
 import { FormBuilder, Validators } from '@angular/forms';
 import emp from '../../assets/empData.json';
-import { Course, Dept, CRN, Divs } from '../../assets/interfaces';
+import { EmpInfo, Department, Course, Subject } from '../../assets/interfaces';
 @Component({
   selector: 'app-subj-crse-dd',
   templateUrl: './subj-crse-dd.component.html',
   styleUrls: ['./subj-crse-dd.component.css'],
 })
 export class SubjCrseDdComponent implements OnInit {
-  empInfo: Course[] = emp;
-  divsList: Divs[] = [];
-  deptList: Dept[] = [];
-  crnList: CRN[] = [];
+  empInfo: EmpInfo[] = emp;
+  subjList: Subject[] = [];
+  deptList: Department[] = [];
+  crnList: Course[] = [];
 
   ngOnInit(): void {
-    this.getDivsDropDown(this.empInfo);
+    this.getSubjectDropDown(this.empInfo);
   }
 
   private fb = inject(FormBuilder);
   addressForm = this.fb.group({
-    divs: '',
+    subj: '',
     dept: ['', Validators.required],
     crn: '',
   });
 
-  // --left off here
-  getDivsDropDown(jsonArray: any[]) {
-    const uniqueDivs = [
+  getSubjectDropDown(jsonArray: any[]) {
+    const uniqueSubj = [
       ...new Set(
         jsonArray.map((item) =>
           JSON.stringify({
-            divs_code: item.divs_code,
-            divs_desc: item.divs_desc,
+            subj_code: item.subj_code,
+            subj_desc: item.subj_desc,
           })
         )
       ),
     ].map((item) => JSON.parse(item));
 
-    this.divsList = uniqueDivs;
-    if (this.divsList.length === 1) {
-      this.addressForm.get('divs')?.setValue(this.divsList[0].divs_code);
-      this.getDeptDropDown(this.divsList[0].divs_code);
+    // assign uniquesub to subjList and then sort
+    this.subjList = uniqueSubj.sort((a, b) =>
+      a.subj_code > b.subj_code ? 1 : -1
+    );
+
+    if (this.subjList.length === 1) {
+      this.addressForm.get('subj')?.setValue(this.subjList[0].subj_code);
+      this.getDeptDropDown(this.subjList[0].subj_code);
     }
   }
 
-  getDeptDropDown(divsCode: string) {
+  getDeptDropDown(subjCode: string) {
     this.addressForm.get('crn')?.reset();
-    const uniqueJson: { [key: string]: Dept } = {};
+    const uniqueJson: { [key: string]: Department } = {};
 
     for (let i = 0; i < this.empInfo.length; i++) {
       const item = this.empInfo[i];
-      const currentDivsCode = item.divs_code;
+      const currentSubjCode = item.subj_code;
 
-      if (currentDivsCode === divsCode) {
+      if (currentSubjCode === subjCode) {
         const uniqueKey = item.dept_code + '_' + item.dept_desc;
 
         if (!uniqueJson[uniqueKey]) {
@@ -74,7 +77,7 @@ export class SubjCrseDdComponent implements OnInit {
   }
   getCRNDropDown(deptCode: string) {
     const uniqueSet = new Set<string>();
-    const uniqueJson: CRN[] = [];
+    const uniqueJson: Course[] = [];
 
     for (const data of this.empInfo) {
       if (data.dept_code === deptCode) {

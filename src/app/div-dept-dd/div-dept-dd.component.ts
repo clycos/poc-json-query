@@ -2,17 +2,17 @@ import { Component, inject, OnInit } from '@angular/core';
 
 import { FormBuilder, Validators } from '@angular/forms';
 import emp from '../../assets/empData.json';
-import { Course, Dept, CRN, Divs } from '../../assets/interfaces';
+import { EmpInfo, Department, Course, Division } from '../../assets/interfaces';
 @Component({
   selector: 'app-div-dept-dd',
   templateUrl: './div-dept-dd.component.html',
   styleUrls: ['./div-dept-dd.component.css'],
 })
 export class DivDeptDDComponent implements OnInit {
-  empInfo: Course[] = emp;
-  divsList: Divs[] = [];
-  deptList: Dept[] = [];
-  crnList: CRN[] = [];
+  empInfo: EmpInfo[] = emp;
+  divsList: Division[] = [];
+  deptList: Department[] = [];
+  crnList: Course[] = [];
 
   ngOnInit(): void {
     this.getDivsDropDown(this.empInfo);
@@ -47,7 +47,7 @@ export class DivDeptDDComponent implements OnInit {
 
   getDeptDropDown(divsCode: string) {
     this.addressForm.get('crn')?.reset();
-    const uniqueJson: { [key: string]: Dept } = {};
+    const uniqueJson: { [key: string]: Department } = {};
 
     for (let i = 0; i < this.empInfo.length; i++) {
       const item = this.empInfo[i];
@@ -74,7 +74,7 @@ export class DivDeptDDComponent implements OnInit {
   }
   getCRNDropDown(deptCode: string) {
     const uniqueSet = new Set<string>();
-    const uniqueJson: CRN[] = [];
+    const uniqueJson: Course[] = [];
 
     for (const data of this.empInfo) {
       if (data.dept_code === deptCode) {

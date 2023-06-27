@@ -9,19 +9,19 @@
       <div class="row">
         <div class="col-4">
           <mat-form-field class="full-width">
-            <mat-select placeholder="Division" formControlName="divs">
+            <mat-select placeholder="Subject" formControlName="subj">
               <mat-option
-                *ngFor="let divs of divsList"
-                [value]="divs.divs_code"
-                (click)="getDeptDropDown(divs.divs_code)"
+                *ngFor="let subject of subjList"
+                [value]="subject.subj_code"
+                (click)="getDeptDropDown(subject.subj_code)"
               >
-                {{ divs.divs_code }}-{{ divs.divs_desc }}
+                {{ subject.subj_code }}-{{ subject.subj_desc }}
               </mat-option>
             </mat-select>
             <mat-error
-              *ngIf="addressForm.controls['divs'].hasError('required')"
+              *ngIf="addressForm.controls['subj'].hasError('required')"
             >
-              Division is <strong>required</strong>
+              Subject is <strong>required</strong>
             </mat-error>
           </mat-form-field>
         </div>
