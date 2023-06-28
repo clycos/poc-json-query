@@ -9,9 +9,14 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
+import {
+  MatAutocomplete,
+  MatAutocompleteModule,
+} from '@angular/material/autocomplete';
 import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SubjCrseDdComponent } from './subj-crse-dd/subj-crse-dd.component';
+import { BoostrapAutoDdComponent } from './boostrap-auto-dd/boostrap-auto-dd.component';
 
 @NgModule({
   declarations: [AppComponent, DivDeptDDComponent, SubjCrseDdComponent],
@@ -19,12 +24,14 @@ import { SubjCrseDdComponent } from './subj-crse-dd/subj-crse-dd.component';
     BrowserModule,
     NgbModule,
     BrowserAnimationsModule,
+    MatAutocompleteModule,
     MatInputModule,
     MatButtonModule,
     MatSelectModule,
     MatRadioModule,
     MatCardModule,
     ReactiveFormsModule,
+    BoostrapAutoDdComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],
