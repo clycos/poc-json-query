@@ -9,9 +9,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 
 @Component({
-  selector: 'app-boostrap-auto-dd',
-  templateUrl: './boostrap-auto-dd.component.html',
-  styleUrls: ['./boostrap-auto-dd.component.css'],
+  selector: 'material-search-dd',
+  templateUrl: './material-search-dd.component.html',
+  styleUrls: ['./material-search-dd.component.css'],
   standalone: true,
   imports: [
     FormsModule,
@@ -24,7 +24,7 @@ import { MatCardModule } from '@angular/material/card';
     AsyncPipe,
   ],
 })
-export class BoostrapAutoDdComponent implements OnInit {
+export class MaterialSearchDDComponent implements OnInit {
   myControl = new FormControl('');
   options: string[] = ['One', 'Two', 'Three'];
   filteredOptions: Observable<string[]> | undefined;
