@@ -17,6 +17,7 @@ import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SubjCrseDdComponent } from './subj-crse-dd/subj-crse-dd.component';
 import { MaterialSearchDDComponent } from './material-search-dd/material-search-dd.component';
+import { SubjCrseMatDDComponent } from './subj-crse-mat-dd/subj-crse-mat-dd.component';
 
 @NgModule({
   declarations: [AppComponent, DivDeptDDComponent, SubjCrseDdComponent],
@@ -32,6 +33,7 @@ import { MaterialSearchDDComponent } from './material-search-dd/material-search-
     MatCardModule,
     ReactiveFormsModule,
     MaterialSearchDDComponent,
+    SubjCrseMatDDComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],
