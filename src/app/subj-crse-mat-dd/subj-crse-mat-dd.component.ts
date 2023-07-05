@@ -67,6 +67,8 @@ export class SubjCrseMatDDComponent implements OnInit {
   }
 
   private _filter(value: string): string[] {
+    console.log('TBD');
+
     const filterValue = value.toLowerCase();
 
     return this.options.filter((option) =>

@@ -8,6 +8,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 
+interface blah {
+  name: string;
+  nameID: string;
+}
+
 @Component({
   selector: 'material-search-dd',
   templateUrl: './material-search-dd.component.html',
@@ -26,8 +31,13 @@ import { MatCardModule } from '@angular/material/card';
 })
 export class MaterialSearchDDComponent implements OnInit {
   myControl = new FormControl('');
-  options: string[] = ['One', 'Two', 'Three'];
-  filteredOptions: Observable<string[]> | undefined;
+  options1: string[] = ['One', 'Two', 'Three'];
+  options2: blah[] = [
+    { nameID: '1', name: '1-One' },
+    { nameID: '2', name: '2-Two' },
+    { nameID: '3', name: '3-Three' },
+  ];
+  filteredOptions: Observable<blah[]> | undefined;
 
   ngOnInit() {
     this.filteredOptions = this.myControl.valueChanges.pipe(
@@ -36,11 +46,11 @@ export class MaterialSearchDDComponent implements OnInit {
     );
   }
 
-  private _filter(value: string): string[] {
+  private _filter(value: string): blah[] {
     const filterValue = value.toLowerCase();
 
-    return this.options.filter((option) =>
-      option.toLowerCase().includes(filterValue)
+    return this.options2.filter((option) =>
+      option.name.toLowerCase().includes(filterValue)
     );
   }
 }
