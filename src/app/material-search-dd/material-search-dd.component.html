@@ -1,18 +1,18 @@
 <form>
   <mat-card class="shipping-card">
     <mat-card-header>
-      <mat-card-title>Shipping Information</mat-card-title>
+      <mat-card-title>TBD</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <div>
         <div class="row">
           <div class="col-4">
             <mat-form-field class="full-width">
-              <mat-label>Number</mat-label>
+              <mat-label>Course</mat-label>
               <input
                 type="text"
                 placeholder="Pick one"
-                aria-label="Number"
+                aria-label="Course"
                 matInput
                 [formControl]="myControl"
                 [matAutocomplete]="auto"
@@ -20,9 +20,9 @@
               <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
                 <mat-option
                   *ngFor="let option of filteredOptions | async"
-                  [value]="option.nameID"
+                  [value]="option.subj_desc"
                 >
-                  {{ option.name }}
+                  {{ option.subj_code }}
                 </mat-option>
               </mat-autocomplete>
             </mat-form-field>

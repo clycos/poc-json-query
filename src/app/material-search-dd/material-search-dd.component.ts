@@ -7,11 +7,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
-
-interface blah {
-  name: string;
-  nameID: string;
-}
+import { Subject } from 'src/assets/interfaces';
+import emp from '../../assets/empData.json';
 
 @Component({
   selector: 'material-search-dd',
@@ -30,14 +27,14 @@ interface blah {
   ],
 })
 export class MaterialSearchDDComponent implements OnInit {
+  subjList: Subject[] = [];
   myControl = new FormControl('');
-  options1: string[] = ['One', 'Two', 'Three'];
-  options2: blah[] = [
-    { nameID: '1', name: '1-One' },
-    { nameID: '2', name: '2-Two' },
-    { nameID: '3', name: '3-Three' },
+  options2: Subject[] = [
+    { subj_desc: '1', subj_code: '1-One' },
+    { subj_desc: '2', subj_code: '2-Two' },
+    { subj_desc: '3', subj_code: '3-Three' },
   ];
-  filteredOptions: Observable<blah[]> | undefined;
+  filteredOptions: Observable<Subject[]> | undefined;
 
   ngOnInit() {
     this.filteredOptions = this.myControl.valueChanges.pipe(
@@ -46,11 +43,11 @@ export class MaterialSearchDDComponent implements OnInit {
     );
   }
 
-  private _filter(value: string): blah[] {
+  private _filter(value: string): Subject[] {
     const filterValue = value.toLowerCase();
 
     return this.options2.filter((option) =>
-      option.name.toLowerCase().includes(filterValue)
+      option.subj_code.toLowerCase().includes(filterValue)
     );
   }
 }
