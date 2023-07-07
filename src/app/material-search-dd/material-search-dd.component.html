@@ -20,9 +20,9 @@
               <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
                 <mat-option
                   *ngFor="let option of filteredOptions | async"
-                  [value]="option.subj_desc"
+                  [value]="option.subj_code"
                 >
-                  {{ option.subj_code }}
+                  {{ option.subj_code }}-{{ option.subj_desc }}
                 </mat-option>
               </mat-autocomplete>
             </mat-form-field>

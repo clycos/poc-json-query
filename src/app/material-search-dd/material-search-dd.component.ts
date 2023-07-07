@@ -7,7 +7,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
-import { Subject } from 'src/assets/interfaces';
+import { Subject, EmpInfo } from 'src/assets/interfaces';
 import emp from '../../assets/empData.json';
 
 @Component({
@@ -27,27 +27,52 @@ import emp from '../../assets/empData.json';
   ],
 })
 export class MaterialSearchDDComponent implements OnInit {
+  empInfo: EmpInfo[] = emp;
   subjList: Subject[] = [];
   myControl = new FormControl('');
-  options2: Subject[] = [
-    { subj_desc: '1', subj_code: '1-One' },
-    { subj_desc: '2', subj_code: '2-Two' },
-    { subj_desc: '3', subj_code: '3-Three' },
-  ];
   filteredOptions: Observable<Subject[]> | undefined;
 
   ngOnInit() {
+    this.getSubjectDropDown(this.empInfo);
+
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
       map((value) => this._filter(value || ''))
     );
   }
 
+  getSubjectDropDown(jsonArray: any[]) {
+    const uniqueSubj = [
+      ...new Set(
+        jsonArray.map((item) =>
+          JSON.stringify({
+            subj_code: item.subj_code,
+            subj_desc: item.subj_desc,
+          })
+        )
+      ),
+    ].map((item) => JSON.parse(item));
+
+    // assign uniquesub to subjList and then sort
+    this.subjList = uniqueSubj.sort((a, b) =>
+      a.subj_code > b.subj_code ? 1 : -1
+    );
+  }
+
   private _filter(value: string): Subject[] {
     const filterValue = value.toLowerCase();
 
-    return this.options2.filter((option) =>
-      option.subj_code.toLowerCase().includes(filterValue)
+    console.log(
+      'input value',
+      this.subjList.filter((option) =>
+        option.subj_code.toLowerCase().includes(filterValue)
+      )
+    );
+
+    return this.subjList.filter(
+      (option) =>
+        option.subj_code.toLowerCase().includes(filterValue) ||
+        option.subj_desc.toLowerCase().includes(filterValue)
     );
   }
 }
