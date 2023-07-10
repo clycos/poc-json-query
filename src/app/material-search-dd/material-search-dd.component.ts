@@ -62,13 +62,6 @@ export class MaterialSearchDDComponent implements OnInit {
   private _filter(value: string): Subject[] {
     const filterValue = value.toLowerCase();
 
-    console.log(
-      'input value',
-      this.subjList.filter((option) =>
-        option.subj_code.toLowerCase().includes(filterValue)
-      )
-    );
-
     return this.subjList.filter(
       (option) =>
         option.subj_code.toLowerCase().includes(filterValue) ||
