@@ -1,5 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Component, OnInit, inject } from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { NgFor, AsyncPipe } from '@angular/common';
@@ -41,6 +47,14 @@ export class MaterialSearchDDComponent implements OnInit {
     );
   }
 
+  private fb = inject(FormBuilder);
+  //TBD - need to add these to the form
+  addressForm = this.fb.group({
+    subj: '',
+    dept: ['', Validators.required],
+    crn: '',
+  });
+
   getSubjectDropDown(jsonArray: any[]) {
     const uniqueSubj = [
       ...new Set(
@@ -67,5 +81,9 @@ export class MaterialSearchDDComponent implements OnInit {
         option.subj_code.toLowerCase().includes(filterValue) ||
         option.subj_desc.toLowerCase().includes(filterValue)
     );
+  }
+
+  onSubmit(event: any): void {
+    console.log(this.addressForm.value);
   }
 }
