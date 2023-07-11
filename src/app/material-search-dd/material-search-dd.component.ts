@@ -7,6 +7,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 import { Subject, EmpInfo } from 'src/assets/interfaces';
 import emp from '../../assets/empData.json';
 
@@ -17,6 +18,7 @@ import emp from '../../assets/empData.json';
   standalone: true,
   imports: [
     FormsModule,
+    MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
     MatAutocompleteModule,
@@ -27,11 +29,12 @@ import emp from '../../assets/empData.json';
   ],
 })
 export class MaterialSearchDDComponent implements OnInit {
-  constructor(private fb: FormBuilder) {}
+  constructor() {}
   empInfo: EmpInfo[] = emp;
   subjList: Subject[] = [];
   filteredOptions: Observable<Subject[]> | undefined;
 
+  private fb = inject(FormBuilder);
   courseForm = this.fb.group({
     subj_code: [''],
   });

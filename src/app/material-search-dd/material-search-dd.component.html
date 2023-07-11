@@ -9,19 +9,10 @@
           <div class="col-4">
             <mat-form-field class="full-width">
               <mat-label>Course</mat-label>
-              <input
-                type="text"
-                placeholder="Pick one"
-                aria-label="Course"
-                matInput
-                formControlName="subj_code"
-                [matAutocomplete]="auto"
-              />
+              <input type="text" placeholder="Pick one" aria-label="Course" matInput formControlName="subj_code"
+                [matAutocomplete]="auto" />
               <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                <mat-option
-                  *ngFor="let option of filteredOptions | async"
-                  [value]="option.subj_code"
-                >
+                <mat-option *ngFor="let option of filteredOptions | async" [value]="option.subj_code">
                   {{ option.subj_code }}-{{ option.subj_desc }}
                 </mat-option>
               </mat-autocomplete>
@@ -31,7 +22,7 @@
       </div>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" type="submit">Submits</button>
+      <button mat-raised-button color="primary" type="submit">Submit</button>
     </mat-card-actions>
   </mat-card>
 </form>
