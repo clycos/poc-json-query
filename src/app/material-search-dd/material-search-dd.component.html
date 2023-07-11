@@ -1,4 +1,4 @@
-<form [formGroup]="addressForm" novalidate (ngSubmit)="onSubmit($event)">
+<form [formGroup]="courseForm" novalidate (ngSubmit)="onSubmit($event)">
   <mat-card class="shipping-card">
     <mat-card-header>
       <mat-card-title>TBD</mat-card-title>
@@ -14,7 +14,7 @@
                 placeholder="Pick one"
                 aria-label="Course"
                 matInput
-                [formControl]="myControl"
+                formControlName="subj_code"
                 [matAutocomplete]="auto"
               />
               <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">

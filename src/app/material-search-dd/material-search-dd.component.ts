@@ -1,11 +1,5 @@
 import { Component, OnInit, inject } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormsModule,
-  ReactiveFormsModule,
-  Validators,
-} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormBuilder } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { NgFor, AsyncPipe } from '@angular/common';
@@ -33,27 +27,23 @@ import emp from '../../assets/empData.json';
   ],
 })
 export class MaterialSearchDDComponent implements OnInit {
+  constructor(private fb: FormBuilder) {}
   empInfo: EmpInfo[] = emp;
   subjList: Subject[] = [];
-  myControl = new FormControl('');
   filteredOptions: Observable<Subject[]> | undefined;
+
+  courseForm = this.fb.group({
+    subj_code: [''],
+  });
 
   ngOnInit() {
     this.getSubjectDropDown(this.empInfo);
 
-    this.filteredOptions = this.myControl.valueChanges.pipe(
+    this.filteredOptions = this.courseForm.get('subj_code')?.valueChanges.pipe(
       startWith(''),
       map((value) => this._filter(value || ''))
     );
   }
-
-  private fb = inject(FormBuilder);
-  //TBD - need to add these to the form
-  addressForm = this.fb.group({
-    subj: '',
-    dept: ['', Validators.required],
-    crn: '',
-  });
 
   getSubjectDropDown(jsonArray: any[]) {
     const uniqueSubj = [
@@ -84,6 +74,6 @@ export class MaterialSearchDDComponent implements OnInit {
   }
 
   onSubmit(event: any): void {
-    console.log(this.addressForm.value);
+    console.log(this.courseForm.value);
   }
 }
